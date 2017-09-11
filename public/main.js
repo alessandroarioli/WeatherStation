@@ -1,6 +1,7 @@
 var app = new Vue({
   el: '.container',
   data: {
+    location: 'Milan, Italy',
     weatherAPI: "https://api.openweathermap.org/data/2.5/weather?q=Milan&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
     status: 'Ready',
     wheatherInfos: [],
