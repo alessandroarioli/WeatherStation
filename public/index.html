@@ -1,0 +1,58 @@
+<html>
+<head>
+  <link href="style.css" rel="stylesheet"></link>
+  <title>Weather Station Application</title>
+</head>
+<body>
+  <div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="weather-card one">
+				<div class="top">
+					<div class="wrapper">
+						<h1 class="heading">{{currentInfos.wheaterDescription}}</h1>
+						<h3 class="location">{{location}}</h3>
+						<p class="temp">
+							<span class="temp-value">{{currentInfos.main.temp}}</span>
+							<span class="deg">0</span>
+							<a><span class="temp-type">C</span></a>
+						</p>
+            <div class="mynav">
+              {{status}}
+            </div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="wrapper">
+						<ul class="forecast">
+							<a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
+							<li>
+								<span class="date">Humidity</span>
+								<span class="lnr condition">
+									<span class="temp">{{currentInfos.main.humidity}} %</span>
+                </span>
+							</li>
+							<li>
+								<span class="date">Wind speed</span>
+								<span class="lnr condition">
+									<span class="temp">{{currentInfos.wind.speed}} Km/h</span>
+								</span>
+							</li>
+              <li>
+								<span class="date">Pressure</span>
+								<span class="lnr condition">
+									<span class="temp">{{currentInfos.main.pressure}} hPa</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="axios.min.js"></script>
+<script src="vuejs_2.4.2.js"></script>
+<script src="main.js"></script>
+</html>
