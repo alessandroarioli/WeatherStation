@@ -3,4 +3,4 @@ var App = express();
 
 App.use(express.static('public'));
 
-App.listen(8080);
+App.listen(80);
