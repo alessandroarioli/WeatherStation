@@ -5,7 +5,7 @@ var app = new Vue({
     weatherAPI: "https://api.openweathermap.org/data/2.5/weather?q=Milan&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
     status: 'Ready',
     wheatherInfos: [],
-    currentInfos: [{
+    currentInfos: {
       wheaterDescription: '-',
       main: {
         temp: 0,
@@ -15,7 +15,7 @@ var app = new Vue({
       wind: {
         speed: 0
       }
-    }]
+    }
   },
   methods: {
     getInfosFromService: function() {
@@ -36,11 +36,27 @@ var app = new Vue({
           .catch(function (error) {
             vueObj.status = 'Error! Could not reach the API. ' + error
           })
+    },
+    setBackgroundImage: function() {
+      var badgeContainer = document.getElementById('badge');
+      var rainingImages  = ['raining_state.jpg', 'raining_state_2.jpg']
+      var nightImages    = ['night_state.jpg', 'night_state_2.jpg', 'night_state_3.jpg']
+
+      if (this.currentInfos.wheaterDescription.includes('rain')) {
+        var rainingImage = rainingImages[Math.floor(Math.random() * rainingImages.length)]
+        badgeContainer.style.backgroundImage = "url('" + rainingImage + "')"
+      } else {
+        var nightImage = nightImages[Math.floor(Math.random() * nightImages.length)]
+        badgeContainer.style.backgroundImage = "url('" + nightImage + "')"
+      }
     }
   },
   mounted: function() {
     this.getInfosFromService();
     setInterval(this.getInfosFromService, 600000);
+  },
+  updated: function() {
+    this.setBackgroundImage();
   },
   watch: {
     wheatherInfos: function(newData) {

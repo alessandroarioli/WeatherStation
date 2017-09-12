@@ -20,9 +20,7 @@ body {
   position: relative;
   height: 520px;
   overflow: hidden;
-  background: url("http://static.panoramio.com/photos/large/68592693.jpg") no-repeat;
   background-size: cover;
-  background-position: center center;
   text-align: center;
 }
 .weather-card .top .wrapper {
@@ -150,9 +148,4 @@ body {
 }
 .weather-card .bottom .wrapper .forecast li.active {
   color: rgba(0, 0, 0, 0.8);
-}
-.weather-card.rain .top {
-  background: url("http://img.freepik.com/free-vector/girl-with-umbrella_1325-5.jpg?size=338&ext=jpg") no-repeat;
-  background-size: cover;
-  background-position: center center;
 }
