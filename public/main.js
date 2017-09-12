@@ -45,8 +45,16 @@ var app = new Vue({
   watch: {
     wheatherInfos: function(newData) {
       this.currentInfos = this.wheatherInfos
-      var descr = this.wheatherInfos.weather[0].description
-      descr = descr.charAt(0).toUpperCase() + descr.slice(1)
+      if (this.wheatherInfos.weather.length !== 1) {
+        var descr = []
+        this.wheatherInfos.weather.map(function(obj) {
+          descr.push(' ' + obj.description)
+        });
+        descr = descr.join()
+      } else {
+        var descr = this.wheatherInfos.weather[0].description
+        descr = descr.charAt(0).toUpperCase() + descr.slice(1)
+      }
       this.currentInfos.wheaterDescription = descr
     }
   }
