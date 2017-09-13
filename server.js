@@ -3,6 +3,7 @@ var App = express();
 
 App.use(express.static('public'));
 App.use(express.static('public/images'));
+App.use(express.static('public/images'));
 
 App.get('/', function(req, res){
   res.render('index');
