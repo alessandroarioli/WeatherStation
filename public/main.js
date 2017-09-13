@@ -4,11 +4,18 @@ var app = new Vue({
     location: 'Milan, Italy',
     weatherAPI: "https://api.openweathermap.org/data/2.5/weather?q=Milan&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
     status: 'Ready',
+    fontColors: {
+      cold: '#41d0f4',
+      hot: '#e54f22',
+      white: '#ffffff',
+      hottest: '#870000',
+      coldest: '#0400ff'
+    },
     wheatherInfos: [],
     currentInfos: {
       wheaterDescription: '-',
       main: {
-        temp: 0,
+        temp: '-',
         humidity: 0,
         pressure: 0
       },
@@ -49,14 +56,32 @@ var app = new Vue({
         var nightImage = nightImages[Math.floor(Math.random() * nightImages.length)]
         badgeContainer.style.backgroundImage = "url('" + nightImage + "')"
       }
+    },
+    setTemperatureColor: function() {
+      var temp = parseFloat(document.getElementById('temperature').innerText);
+      var style = document.getElementById('temperature').style;
+
+      if (temp < 15) {
+        style.color = this.fontColors.cold
+      } else if (temp > 28) {
+        style.color = this.fontColors.hot
+      } else if (temp > 35) {
+        style.color = this.fontColors.hottest
+      } else if (temp < 5) {
+        style.color = this.fontColors.coldest
+      } else {
+        style.color = this.fontColors.white
+      }
+
     }
   },
   mounted: function() {
     this.getInfosFromService();
-    setInterval(this.getInfosFromService, 600000);
+    this.setBackgroundImage();
+    setInterval(this.getInfosFromService, 300000);
   },
   updated: function() {
-    this.setBackgroundImage();
+    this.setTemperatureColor();
   },
   watch: {
     wheatherInfos: function(newData) {
