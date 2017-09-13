@@ -4,6 +4,11 @@ var app = new Vue({
     location: 'Milan, Italy',
     weatherAPI: "https://api.openweathermap.org/data/2.5/weather?q=Milan&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
     status: 'Ready',
+    images: {
+      raining: ['raining.jpg', 'raining_2.jpg'],
+      nights: ['night.jpg', 'night_2.jpg', 'night_3.jpg'],
+      sunny: ['sunny.jpg']
+    },
     fontColors: {
       cold: '#41d0f4',
       hot: '#e54f22',
@@ -46,15 +51,19 @@ var app = new Vue({
     },
     setBackgroundImage: function() {
       var badgeContainer = document.getElementById('badge');
-      var rainingImages  = ['raining_state.jpg', 'raining_state_2.jpg']
-      var nightImages    = ['night_state.jpg', 'night_state_2.jpg', 'night_state_3.jpg']
+      var time = new Date().getHours();
 
       if (this.currentInfos.wheaterDescription.includes('rain')) {
-        var rainingImage = rainingImages[Math.floor(Math.random() * rainingImages.length)]
+        var rainingImage = this.images.rain[Math.floor(Math.random() * this.images.rain.length)]
         badgeContainer.style.backgroundImage = "url('" + rainingImage + "')"
       } else {
-        var nightImage = nightImages[Math.floor(Math.random() * nightImages.length)]
-        badgeContainer.style.backgroundImage = "url('" + nightImage + "')"
+          if (06 < time > 18) {
+          var sunnyImage = this.images.sunny[Math.floor(Math.random() * this.images.sunny.length)]
+          badgeContainer.style.backgroundImage = "url('" + sunnyImage + "')"
+        } else {
+          var nightImage = this.images.nights[Math.floor(Math.random() * this.images.nights.length)]
+          badgeContainer.style.backgroundImage = "url('" + nightImage + "')"
+        }
       }
     },
     setTemperatureColor: function() {
@@ -75,7 +84,7 @@ var app = new Vue({
 
     }
   },
-  mounted: function() {
+  created: function() {
     this.getInfosFromService();
     this.setBackgroundImage();
     setInterval(this.getInfosFromService, 300000);
