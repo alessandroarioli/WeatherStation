@@ -3,6 +3,10 @@
 <head>
   <link href="style.css" rel="stylesheet"></link>
   <title>Weather Station Application</title>
+
+  <script src="vue.min.js"></script>
+  <script src="axios.min.js"></script>
+
 </head>
 <body>
   <div class="container">
@@ -12,14 +16,25 @@
 				<div class="top" id="badge">
 					<div class="wrapper">
 						<h1 class="heading">{{currentInfos.wheaterDescription}}</h1>
-						<h3 class="location">{{location}}</h3>
+						<h3 class="location">{{location.name}}</h3>
 						<p class="temp">
 							<span class="temp-value" id="temperature">{{currentInfos.main.temp}}</span>
 							<span class="deg">0</span>
 							<a><span class="temp-type">C</span></a>
 						</p>
-            <div class="mynav">
-              {{status}}
+            <div class="flex-div">
+              <span class="flex-one">
+                <u>{{tomorrowDate}}</u> <br>
+                <h3>{{forecast.tomorrowDate}}</h3>
+              </span>
+              <span class="flex-one">
+                <u>{{twoDaysPast}}</u> <br>
+                <h3>{{forecast.twoDaysPast}}</h3>
+              </span>
+              <span class="flex-one">
+                <u>{{threeDaysPast}}</u> <br>
+                <h3>{{forecast.threeDaysPast}}</h3>
+              </span>
             </div>
 					</div>
 				</div>
@@ -48,12 +63,21 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+      </div>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="mynav">
+          {{status}}
+        </div>
+      </div>
+
 </div>
 </body>
-<script src="axios.min.js"></script>
-<script src="vue.min.js"></script>
-<script src="main.js"></script>
+
+<footer>
+  <script src="main.js"></script>
+</footer>
+
 </html>

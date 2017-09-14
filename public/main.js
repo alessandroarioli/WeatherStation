@@ -1,8 +1,17 @@
 var app = new Vue({
   el: '.container',
   data: {
-    location: 'Milan, Italy',
-    weatherAPI: "https://api.openweathermap.org/data/2.5/weather?q=Milan, Italy&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
+    location: {
+      id: 6542283,
+      name: 'Milan, Italy'
+    },
+    weatherAPI: "https://api.openweathermap.org/data/2.5/weather?id=6542283&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
+    forecastAPI: "https://api.openweathermap.org/data/2.5/forecast?id=6542283&APPID=9ee8bea9f54c2263e946dbaae60e7c7e",
+    forecast: {
+      tomorrowDate: '-',
+      twoDaysPast: '-',
+      threeDaysPast: '-'
+    },
     status: 'Ready',
     images: {
       raining: ['raining.jpg', 'raining_2.jpg'],
@@ -82,6 +91,16 @@ var app = new Vue({
         style.color = this.fontColors.white
       }
 
+    },
+    getForecast: function() {
+      var vueObj = this
+
+      axios.get(this.forecastAPI)
+          .then(function (response) {
+            vueObj.forecast.tomorrowDate = response.data.list[1].weather[0].description
+            vueObj.forecast.twoDaysPast = response.data.list[2].weather[0].description
+            vueObj.forecast.threeDaysPast = response.data.list[3].weather[0].description
+          })
     }
   },
   created: function() {
@@ -91,6 +110,7 @@ var app = new Vue({
   },
   updated: function() {
     this.setTemperatureColor();
+    this.getForecast();
   },
   watch: {
     wheatherInfos: function(newData) {
@@ -106,6 +126,20 @@ var app = new Vue({
         descr = descr.charAt(0).toUpperCase() + descr.slice(1)
       }
       this.currentInfos.wheaterDescription = descr
+    }
+  },
+  computed: {
+    tomorrowDate: function() {
+      var today = new Date();
+      return (today.getDate() + 1) + '/' + (today.getMonth() + 1)
+    },
+    twoDaysPast: function() {
+      var today = new Date();
+      return (today.getDate() + 2) + '/' + (today.getMonth() + 1)
+    },
+    threeDaysPast: function() {
+      var today = new Date();
+      return (today.getDate() + 3) + '/' + (today.getMonth() + 1)
     }
   }
 });

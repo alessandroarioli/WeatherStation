@@ -9,6 +9,26 @@ body {
     width: 40%;
   }
 }
+
+.flex-div {
+  display: flex;
+  padding-top: 10em;
+  color: #FFFFFF;
+}
+
+.flex-div .flex-one:nth-child(2) {
+  border-left-color: white;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-right-color: white;
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+.flex-one {
+  flex: 1;
+}
+
 .weather-card {
   margin: 60px auto;
   height: 740px;
@@ -28,11 +48,9 @@ body {
   position: relative;
   z-index: 1;
 }
-.weather-card .top .wrapper .mynav {
-  color: white;
-  text-decoration: underline;
-  height: 20px;
-  padding-top: 13em;
+.mynav {
+  text-align: center;
+  color: grey;
 }
 .weather-card .top .wrapper .mynav .lnr {
   color: #fff;
