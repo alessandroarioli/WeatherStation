@@ -57,7 +57,7 @@ var app = new Vue({
         var rainingImage = this.images.rain[Math.floor(Math.random() * this.images.rain.length)]
         badgeContainer.style.backgroundImage = "url('" + rainingImage + "')"
       } else {
-          if (06 < time > 18) {
+          if (time > 5 && time < 18) {
           var sunnyImage = this.images.sunny[Math.floor(Math.random() * this.images.sunny.length)]
           badgeContainer.style.backgroundImage = "url('" + sunnyImage + "')"
         } else {
