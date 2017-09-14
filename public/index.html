@@ -22,6 +22,13 @@
 							<span class="deg">0</span>
 							<a><span class="temp-type">C</span></a>
 						</p>
+            <div class="icon" v-bind:class="[iconClass[0]]">
+              <div v-bind:class="[iconClass[1]]"></div>
+              <div v-bind:class="[iconClass[2]]">
+                <div v-bind:class="[iconClass[3]]"></div>
+              </div>
+              <div v-bind:class="[iconClass[4]]"></div>
+            </div>
             <div class="flex-div">
               <span class="flex-one">
                 <u>{{tomorrowDate}}</u> <br>

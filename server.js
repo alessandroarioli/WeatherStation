@@ -5,11 +5,6 @@ App.use(express.static('public'));
 App.use(express.static('public/images'));
 App.use(express.static('public/images'));
 
-App.get('/', function(req, res){
-  res.render('index');
-});
-
-
 /* istanbul ignore next */
 if (!module.parent) {
   var port = process.env.PORT || 3000;

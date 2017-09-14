@@ -26,6 +26,9 @@ var app = new Vue({
       coldest: '#0400ff'
     },
     wheatherInfos: [],
+    iconClass: [
+      '', '', '', '', ''
+    ],
     currentInfos: {
       wheaterDescription: '-',
       main: {
@@ -101,11 +104,31 @@ var app = new Vue({
             vueObj.forecast.twoDaysPast = response.data.list[2].weather[0].description
             vueObj.forecast.threeDaysPast = response.data.list[3].weather[0].description
           })
+    },
+    setAnimatedIcon: function() {
+      var desc = this.currentInfos.wheaterDescription
+
+      if (desc.includes('sun')) {
+        if (desc.includes('cloud')) {
+          this.iconClass = ['sun-shower', 'cloud', 'sun', 'rays', 'rain']
+        } else {
+          this.iconClass = ['sunny', '', 'sun', 'rays', '']
+        }
+      } else if (desc.includes('rain')) {
+        this.iconClass = ['rainy', 'cloud', '', '', 'rain']
+      } else if (desc.includes('snow')) {
+        this.iconClass = ['flurries', 'cloud', 'snow', 'flake', 'flake']
+      } else if (desc.includes('storm')) {
+        this.iconClass = ['thunder-storm', 'cloud', 'lightning', 'bolt', 'bolt']
+      } else {
+        this.iconClass = ['cloudy', 'cloud', '', '', 'cloud']
+      }
     }
   },
   created: function() {
     this.getInfosFromService();
     this.setBackgroundImage();
+    this.setAnimatedIcon();
     setInterval(this.getInfosFromService, 300000);
   },
   updated: function() {
