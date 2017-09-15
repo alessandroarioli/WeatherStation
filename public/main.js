@@ -128,7 +128,6 @@ var app = new Vue({
   created: function() {
     this.getInfosFromService();
     this.setBackgroundImage();
-    this.setAnimatedIcon();
     setInterval(this.getInfosFromService, 300000);
   },
   updated: function() {
@@ -149,6 +148,7 @@ var app = new Vue({
         descr = descr.charAt(0).toUpperCase() + descr.slice(1)
       }
       this.currentInfos.wheaterDescription = descr
+      this.setAnimatedIcon();
     }
   },
   computed: {
