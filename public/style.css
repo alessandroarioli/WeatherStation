@@ -30,20 +30,20 @@ body {
 
 .weather-card {
   margin: 60px auto;
-  height: 740px;
   background: #fff;
   box-shadow: 0 10px 100px rgba(0, 0, 0, 0.15), 0 10px 100px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 .weather-card .top {
   position: relative;
-  height: 520px;
   overflow: hidden;
   background-size: cover;
   text-align: center;
 }
 .weather-card .top .wrapper {
-  padding: 30px;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
   position: relative;
   z-index: 1;
 }
