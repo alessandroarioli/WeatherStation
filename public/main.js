@@ -13,7 +13,11 @@ var app = new Vue({
       threeDaysPast: '-'
     },
     status: 'Ready',
-    images: {rain: [], nights: [], sunny: []},
+    images: {
+      raining: ['raining.jpg', 'raining_2.jpg'],
+      nights: ['night.jpg', 'night_2.jpg', 'night_3.jpg'],
+      sunny: ['sunny.jpg']
+    },
     fontColors: {
       cold: '#41d0f4',
       hot: '#e54f22',
@@ -61,8 +65,6 @@ var app = new Vue({
       var badgeContainer = document.getElementById('badge');
       var time = new Date().getHours();
 
-      this.getImagesFromServer();
-
       if (this.currentInfos.wheaterDescription.includes('rain')) {
         var rainingImage = this.images.rain[Math.floor(Math.random() * this.images.rain.length)]
         badgeContainer.style.backgroundImage = "url('" + rainingImage + "')"
@@ -75,14 +77,6 @@ var app = new Vue({
           badgeContainer.style.backgroundImage = "url('" + nightImage + "')"
         }
       }
-    },
-    getImagesFromServer: function() {
-      var vueObj = this
-      console.log('im here!!!')
-      axios.get('/images').then(function (response) {
-        vueObj.images = response.data
-        vueObj.setBackgroundImage()
-      })
     },
     setTemperatureColor: function() {
       var temp = parseFloat(document.getElementById('temperature').innerText);
@@ -133,7 +127,7 @@ var app = new Vue({
   },
   created: function() {
     this.getInfosFromService();
-    this.getImagesFromServer();
+    this.setBackgroundImage();
     setInterval(this.getInfosFromService, 300000);
   },
   updated: function() {
