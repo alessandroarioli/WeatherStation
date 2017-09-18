@@ -67,6 +67,12 @@
 									<span class="temp">{{currentInfos.main.pressure}} hPa</span>
 								</span>
 							</li>
+              <li>
+                <span class="date">Pm 2.5</span>
+                <span class="lnr condition">
+                  <span class="temp" v-bind:class="pollution.class">{{pollution.pm25}}</span>
+                </span>
+              </li>
 						</ul>
 					</div>
 				</div>

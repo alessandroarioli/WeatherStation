@@ -7,10 +7,18 @@ var app = new Vue({
     },
     weatherAPI: "https://api.openweathermap.org/data/2.5/weather?id=6542283&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
     forecastAPI: "https://api.openweathermap.org/data/2.5/forecast?id=6542283&APPID=9ee8bea9f54c2263e946dbaae60e7c7e",
+    pollutionAPI: "http://api.waqi.info/feed/Milan/?token=b683eafa205fc53546270ccd53f071e685b476a4",
     forecast: {
       tomorrowDate: '-',
       twoDaysPast: '-',
       threeDaysPast: '-'
+    },
+    pollution: {
+      class: '',
+      pm25: '',
+      pm10: '',
+      no2: '',
+      co: ''
     },
     status: 'Ready',
     images: {
@@ -123,10 +131,33 @@ var app = new Vue({
       } else {
         this.iconClass = ['cloudy', 'cloud', '', '', 'cloud']
       }
+    },
+    getPollutionValues: function() {
+      var vueObj = this
+
+      axios.get(this.pollutionAPI)
+        .then(function (response) {
+          vueObj.pollution.pm25 = response.data.data.iaqi.pm25.v
+          vueObj.setPollutionColor();
+        })
+    },
+    setPollutionColor: function() {
+      var pollutionVal = this.pollution.pm25
+
+      if (pollutionVal > 0 && pollutionVal <= 50) {
+        this.pollution.class = 'good'
+      } else if (pollutionVal > 50 && pollutionVal <= 100) {
+        this.pollution.class = 'moderate'
+      } else if (pollutionVal > 101 && pollutionVal <= 150) {
+        this.pollution.class = 'unhealthy'
+      } else {
+        this.pollution.class = 'very-unhealthy'
+      }
     }
   },
   created: function() {
     this.getInfosFromService();
+    this.getPollutionValues();
     this.setBackgroundImage();
     setInterval(this.getInfosFromService, 300000);
   },
