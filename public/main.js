@@ -7,7 +7,7 @@ var app = new Vue({
     },
     weatherAPI: "https://api.openweathermap.org/data/2.5/weather?id=6542283&APPID=9ee8bea9f54c2263e946dbaae60e7c7e&units=metric",
     forecastAPI: "https://api.openweathermap.org/data/2.5/forecast?id=6542283&APPID=9ee8bea9f54c2263e946dbaae60e7c7e",
-    pollutionAPI: "http://api.waqi.info/feed/Milan/?token=b683eafa205fc53546270ccd53f071e685b476a4",
+    pollutionAPI: "https://api.waqi.info/feed/Milan/?token=b683eafa205fc53546270ccd53f071e685b476a4",
     forecast: {
       tomorrowDate: '-',
       twoDaysPast: '-',
