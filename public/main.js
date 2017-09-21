@@ -114,7 +114,7 @@ var app = new Vue({
           })
     },
     setAnimatedIcon: function() {
-      var desc = this.currentInfos.wheaterDescription
+      var desc = this.currentInfos.wheaterDescription.toLowerCase();
 
       if (desc.includes('sun')) {
         if (desc.includes('cloud')) {
@@ -122,6 +122,8 @@ var app = new Vue({
         } else {
           this.iconClass = ['sunny', '', 'sun', 'rays', '']
         }
+      } else if (desc.includes('clear sky')) {
+        this.iconClass = ['sunny', '', 'sun', 'rays', '']
       } else if (desc.includes('storm')) {
         this.iconClass = ['thunder-storm', 'cloud', 'lightning', 'bolt', 'bolt']
       } else if (desc.includes('rain')) {
@@ -129,7 +131,7 @@ var app = new Vue({
       } else if (desc.includes('snow')) {
         this.iconClass = ['flurries', 'cloud', 'snow', 'flake', 'flake']
       } else {
-        this.iconClass = ['cloudy', 'cloud', '', '', 'cloud']
+        this.iconClass = ['cloudy', 'cloud', 'cloud', '', '']
       }
     },
     getPollutionValues: function() {
