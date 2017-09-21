@@ -104,7 +104,7 @@ var app = new Vue({
 
     },
     getForecast: function() {
-      var vueObj = this
+      var vueObj = this;
 
       axios.get(this.forecastAPI)
           .then(function (response) {
