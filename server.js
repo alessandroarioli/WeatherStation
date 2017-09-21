@@ -6,8 +6,6 @@ var App = express();
 
 App.use(express.static('public'));
 App.use(express.static('public/images'));
-App.use(express.static('public/images'));
-
 
 App.get('/images', function(req, res) {
 
@@ -16,7 +14,7 @@ App.get('/images', function(req, res) {
 
     files.forEach(file => {
       if (file.includes('rain')) {
-        imagesArray.rain.push(file);
+        imagesArray.raining.push(file);
       } else if (file.includes('sun')) {
         imagesArray.sunny.push(file);
       } else if (file.includes('night')) {

@@ -4,7 +4,8 @@
   "description": "Weather Station in Node js + Vue js",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon server.js"
   },
   "author": "Alex",
   "license": "ISC",
