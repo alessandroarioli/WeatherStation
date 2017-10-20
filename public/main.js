@@ -239,11 +239,11 @@ new Vue({
     setPollutionColor: function() {
       var pollutionVal = this.pollution.pm25
 
-      if (pollutionVal > 0 && pollutionVal <= 50) {
+      if (pollutionVal > 0 && pollutionVal <= 40) {
         this.pollution.class = 'good'
-      } else if (pollutionVal > 50 && pollutionVal <= 100) {
+      } else if (pollutionVal > 41 && pollutionVal <= 70) {
         this.pollution.class = 'moderate'
-      } else if (pollutionVal > 101 && pollutionVal <= 150) {
+      } else if (pollutionVal > 71 && pollutionVal <= 100) {
         this.pollution.class = 'unhealthy'
       } else {
         this.pollution.class = 'very-unhealthy'
